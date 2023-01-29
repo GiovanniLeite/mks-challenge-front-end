@@ -1,6 +1,23 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import '@fontsource/montserrat';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { AppProps } from 'next/app';
+
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from '../styles/global';
+import { theme } from '../styles/theme';
+
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider theme={theme}>
+      <Header />
+      <Component {...pageProps} />
+      <Footer />
+      <GlobalStyles />
+    </ThemeProvider>
+  );
 }
+
+export default App;
