@@ -49,7 +49,7 @@ export default function Header() {
                   <Cart />
 
                   <h3 className="total" title="Total">
-                    Total:<span>R${moneyFormat(total) || 0}</span>
+                    Total:<span>{moneyFormat(total) || 0}</span>
                   </h3>
                 </div>
                 <button
