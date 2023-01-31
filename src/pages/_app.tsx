@@ -1,8 +1,11 @@
 import '@fontsource/montserrat';
 
 import { AppProps } from 'next/app';
-
 import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { persistor, store } from '../redux/app/store';
 import { GlobalStyles } from '../styles/global';
 import { theme } from '../styles/theme';
 
@@ -11,12 +14,16 @@ import Footer from '../components/Footer';
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-      <GlobalStyles />
-    </ThemeProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+          <GlobalStyles />
+        </ThemeProvider>
+      </PersistGate>
+    </Provider>
   );
 }
 

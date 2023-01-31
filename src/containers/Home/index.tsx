@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
-import { ProductsData } from '@/domain/products/products';
+import { ProductsData } from '../../domain/products/products';
 
-import Card from '@/components/Card';
+import Card from '../../components/Card';
 import { Container } from './styles';
 
 export type HomePageProps = {
@@ -20,15 +20,7 @@ export default function HomePage({ products }: HomePageProps) {
       <Container>
         <section className="ProductGrid">
           {products.map((product) => (
-            <Card
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              brand={product.name}
-              description={product.description}
-              price={product.price}
-              img={product.img}
-            />
+            <Card key={product.id} {...product} />
           ))}
         </section>
       </Container>

@@ -1,8 +1,17 @@
 import Link from 'next/link';
 
+import { moneyFormat } from '../../utils/moneyFormat';
+import { useAppSelector } from '../../redux/app/hooks';
+
+import Cart from '../Cart';
 import { Container, FixedHeader, MainBar } from './styles';
 
 export default function Header() {
+  const cart = useAppSelector((state) => state.cart.cartItems);
+  const total = cart
+    .reduce((a, i) => a + i.qty * Number(i.price), 0)
+    .toFixed(2);
+
   const handleHideMenu = () => {
     const element = document.querySelector('input#check') as HTMLInputElement;
     element.checked = !element.checked;
@@ -27,9 +36,30 @@ export default function Header() {
                   fill="black"
                 />
               </svg>
-              0
+              {cart.length}
             </label>
-            <div className="sideBar">ABC</div>
+            <div className="sideBar">
+              <div className="checkout">
+                <span className="closeSideBar" onClick={() => handleHideMenu()}>
+                  X
+                </span>
+                <div className="info">
+                  <h3 className="title">Carrinho de compras</h3>
+
+                  <Cart />
+
+                  <h3 className="total" title="Total">
+                    Total:<span>R${moneyFormat(total) || 0}</span>
+                  </h3>
+                </div>
+                <button
+                  className="checkoutButton"
+                  onClick={() => handleHideMenu()}
+                >
+                  Finalizar Compra
+                </button>
+              </div>
+            </div>
           </div>
 
           <Link href="/" as={`/`} className="home" title="Home">

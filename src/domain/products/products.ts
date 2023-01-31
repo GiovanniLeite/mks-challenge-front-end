@@ -8,6 +8,8 @@ export type ProductsData = {
   name: string;
   brand: string;
   description: string;
-  price: number;
-  img: string;
+  photo: string;
+  price: string;
+  createdAt: string;
+  updatedAt: string;
 };
