@@ -1,6 +1,6 @@
 # MKS Front-end Challenge
 
-Check it out here: [https://mks-frontend-challenge-orcin.vercel.app](https://mks-frontend-challenge-orcin.vercel.app)
+Check it out here: https://mks-frontend-challenge-orcin.vercel.app
 
 ## 📋 Presentation
 
